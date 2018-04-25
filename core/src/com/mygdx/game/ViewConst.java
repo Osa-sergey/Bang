@@ -75,4 +75,6 @@ public class ViewConst {
     final static int btnScrollPrev_height = 334;
     final static int btnScrollPrev_x = 1186;
     final static int btnScrollPrev_y = 0;
+
+    final static int deck_cardsVisible_number = 2;
 }

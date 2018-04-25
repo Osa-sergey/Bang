@@ -143,6 +143,8 @@ public class GameScreen implements Screen {
                 players.elementAt(i).deck.play_deck.elementAt(j).setPosition(ViewConst.deck_card_x_start+j*ViewConst.deck_card_hor,ViewConst.deck_card_y);
                 players.elementAt(i).deck.play_deck.elementAt(j).open = true;
                 group_actor[i].addActor(players.elementAt(i).deck.play_deck.elementAt(j));
+                if(j>ViewConst.deck_cardsVisible_number)
+                players.elementAt(i).deck.play_deck.elementAt(j).visible = false;
             }
             if(i!=0){
                 for (int j = 0; j <players.elementAt(i).deck.play_deck.capacity() ; j++) {
@@ -176,8 +178,14 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>4 && prev_card.visible == false) next_card.visible = true;
-        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=4){
+        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>ViewConst.deck_cardsVisible_number
+                && !prev_card.visible
+                && !prev_card.inProcess
+                && !next_card.inProcess)
+            next_card.visible = true;
+        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number
+                && prev_card.inProcess
+                && next_card.inProcess){
             next_card.visible = false;
             prev_card.visible = false;
         }

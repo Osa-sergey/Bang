@@ -13,6 +13,7 @@ public class Button extends Actor {
 
     Integer id;
     boolean visible = true;
+    boolean inProcess = false;
     public Button (Integer id, final MyGdxGame game, final GameScreen gameScreen){
         this.id=id;
         addListener(new ClickListener(){
@@ -30,6 +31,8 @@ public class Button extends Actor {
                             Gdx.app.exit();
                             break;
                         case 5: {
+                            gameScreen.prev_card.inProcess = true;
+                            gameScreen.next_card.inProcess = true;
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
                             }
@@ -78,6 +81,9 @@ public class Button extends Actor {
                             gameScreen.group_actor[0] = tmp_group;
 
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
+                                if(i>ViewConst.deck_cardsVisible_number){
+                                    gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
+                                }else
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = true;
                             }
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.capacity(); i++) {
@@ -86,6 +92,8 @@ public class Button extends Actor {
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = true;
                             visible = false;
                             gameScreen.next.visible = true;
+                            gameScreen.next_card.inProcess = false;
+                            gameScreen.prev_card.inProcess = false;
                             break;
                         }
                         case 7:{
