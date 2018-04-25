@@ -182,12 +182,12 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>ViewConst.deck_cardsVisible_number
+        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>ViewConst.deck_cardsVisible_number+1
                 && !prev_card.visible
                 && !prev_card.inProcess
                 && !next_card.inProcess)
             next_card.visible = true;
-        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number
+        if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number+1
                 && prev_card.inProcess
                 && next_card.inProcess){
             next_card.visible = false;

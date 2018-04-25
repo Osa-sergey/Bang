@@ -35,23 +35,27 @@ public class Button extends Actor {
                             gameScreen.next_card.inProcess = true;
                             if(!gameScreen.next_card.visible) {
                                 for (int i = 0; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
-                                    if (i <= ViewConst.deck_cardsVisible_number)
-                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(
-                                            ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y
-                                    );
+                                    if (i <= ViewConst.deck_cardsVisible_number) {
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                visible = true;
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
+                                    } else break;
                                 }
-                                for (int i = ViewConst.deck_cardsVisible_number; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = false;
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.screen_width + (i - 1 - ViewConst.
-                                            deck_cardsVisible_number) * ViewConst.deck_card_hor, ViewConst.deck_card_y);
+                                for (int i = ViewConst.deck_cardsVisible_number+1; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                            visible = false;
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                            setPosition(ViewConst.screen_width + (i - 2 - ViewConst.deck_cardsVisible_number) * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                                 }
                             }
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
-                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
+                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).
+                                        visible = false;
                             }
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.capacity(); i++) {
-                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).visible = false;
+                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).
+                                        visible = false;
                             }
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = false;
                             gameScreen.game_.next_turn();
@@ -116,17 +120,12 @@ public class Button extends Actor {
                             for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 if(i<=ViewConst.deck_cardsVisible_number) {
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = false;
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(
-                                            ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, -ViewConst.card_height
-                                    );
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, -ViewConst.card_height);
                                }else break;
                             }
-                            for (int i = ViewConst.deck_cardsVisible_number; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                            for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
-                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(
-                                       ViewConst.deck_card_x_newStart + (i-1-ViewConst.deck_cardsVisible_number)
-                                                * ViewConst.deck_card_hor,ViewConst.deck_card_y
-                                );
+                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_newStart + (i-2-ViewConst.deck_cardsVisible_number)* ViewConst.deck_card_hor,ViewConst.deck_card_y);
                             }
                             break;
                         }
@@ -135,16 +134,17 @@ public class Button extends Actor {
                             visible = false;
                             for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 if(i<=ViewConst.deck_cardsVisible_number) {
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
-                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(
-                                            ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y
-                                    );
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                            visible = true;
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                            setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                                 }else break;
                             }
-                            for (int i = ViewConst.deck_cardsVisible_number; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
-                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = false;
-                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.screen_width+(i-1-ViewConst.
-                                        deck_cardsVisible_number)*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                            for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                        visible = false;
+                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                        setPosition(ViewConst.screen_width+(i-2-ViewConst.deck_cardsVisible_number)*ViewConst.deck_card_hor,ViewConst.deck_card_y);
                             }
                             break;
                         }
