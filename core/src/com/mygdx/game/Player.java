@@ -1,0 +1,138 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import java.util.Vector;
+
+public class Player extends Actor {
+    // поля
+    CardWeapon weapon; // оружие игрока
+    CardPerson person; // персона игрока
+    CardRole role; // рольигрока
+    Integer maxHealthPoints; //максимальный запас здоровья
+    Integer currentHealthPoints; //текущее количество здоровья
+    Integer dist = 1; // то, на каком расстоянии находитесь вы для других
+    Integer distBang = 0; // то, насколько далеко вы можите стрелять
+    Integer bangsInStep = 0; //количество выстрелов за ход
+    Integer currentBangsInStep; //количество оставшихся выстрелов
+    Deck deck = null;//ваша рука
+    Vector<CardEffect> effects = new Vector<CardEffect>(0); //набор карт эффектов
+    //конструктор
+    public Player(CardRole cardRole, CardPerson cardPerson,Pack pack){
+        weapon = new CardWeapon(25); // создание базового оружия статы 1/1
+        person = cardPerson;
+        role = cardRole;
+        maxHealthPoints = cardPerson.getHp();
+        if(cardRole.getRole() == CardRole.Roles.Sceriffo) maxHealthPoints++;
+        currentHealthPoints = maxHealthPoints;
+        if(person.getPerson() == CardPerson.Persons.ElusiveJoe) dist=2;
+        if(person.getPerson() == CardPerson.Persons.ColdBloodedRosie) distBang=2;
+        if(person.getPerson() == CardPerson.Persons.BabyBilly) bangsInStep=1000;// будем считать, что любое количество карт Bang
+        currentBangsInStep=bangsInStep;
+        deck = new Deck(maxHealthPoints);
+        for (int i = 0; i <maxHealthPoints; i++) {
+            deck.add_in_deck(pack.pack_arr.pop());
+        }
+    }
+    public void delete_player(Game game, boolean key){
+        for (int i = 0; i <this.deck.play_deck.size(); i++) {
+            game.dis.add_in_discarded(this.deck.play_deck.elementAt(i));
+        }
+        if(this.weapon.bangsInStep!=1 && this.weapon.distBang!=1){
+            game.dis.add_in_discarded(this.weapon);
+        }//удаление не базового оружия
+        game.players.removeElementAt(game.players.indexOf(this));//удаляем игрока из списка игроков
+        if(key){
+            game.next_turn();//передаём ход
+        }
+        game.players.trimToSize();
+        game.currentPlayersNumber--;
+    } //удаляет все карты игрока переводит хода по ключу
+    private boolean can_play_card(Integer id,Game game){
+        switch (id){
+            case 0:
+            case 1:
+            case 2:
+            case 4:{
+                for (int i = 0; i <effects.size(); i++) {
+                    if(effects.get(i).getId().equals(id))
+                        return false;
+                }
+                return true;
+            }
+            case 3:{
+                for (int i = 0; i <effects.size(); i++) {
+                    if(effects.get(i).getId().equals(id))
+                        return false;
+                }
+                if(role.getRole().equals(CardRole.Roles.Sceriffo)) return false;
+                return true;
+            }
+            case 5:{
+                if(game.players.elementAt(game.currentPlayer).currentBangsInStep!=0)
+                    return true;
+                else return false;
+            }
+            case 6:{
+
+            }
+            case 7:{
+                if((game.currentPlayersNumber>2)&&(game.players.elementAt(game.currentPlayer).currentHealthPoints<game.players.elementAt(game.currentPlayer).maxHealthPoints)){
+                    return true;
+                }else return false;
+            }
+            case 12:{
+                int cur = 0;
+                for (int i = 0; i <game.currentPlayersNumber ; i++) {
+                    if (game.players.elementAt(i).equals(this)) {
+                        cur=i;
+                        break;
+                    }
+                }
+                int dist=Math.abs(cur-game.currentPlayer);
+                if(dist>=game.currentPlayersNumber-1){
+                    dist-=game.currentPlayersNumber-2;
+                }
+                if(dist+this.dist>game.players.elementAt(game.currentPlayer).distBang) return false;
+                if((this.weapon.bangsInStep!=1 && this.weapon.distBang!=1)||
+                        (this.effects.size()!=0) ||
+                        (!this.deck.play_deck.isEmpty())) return true;
+                else return false;
+            }
+            case 13:{
+                if((this.weapon.bangsInStep!=1 && this.weapon.distBang!=1)||
+                        (this.effects.size()!=0) ||
+                        (!this.deck.play_deck.isEmpty())) return true;
+                else return false;
+            }
+            default: return true;
+        }
+    }
+    public boolean play_card(Game game,Card play) {
+        if (can_play_card(play.getId(), game)) {
+            if (play instanceof CardWeapon) {
+                if (!(this.weapon.distBang == 1 && this.weapon.bangsInStep == 1)) {
+                    game.dis.add_in_discarded(this.weapon);
+                }
+                this.weapon.anset_weapon(this, game);
+                ((CardWeapon) play).set_card_weapon(this);
+            } else if (play instanceof CardAction) {
+                ((CardAction) play).play_card_action(game, this);
+                for (int i = 0; i < game.currentPlayersNumber; i++) {
+                    if (game.players.elementAt(i).currentHealthPoints <= 0) {
+
+                    }
+                }
+            } else if (play instanceof CardEffect) {
+                ((CardEffect) play).set_anset_card_effect(this, true);
+                //todo перерисовать список эффектов
+            }
+            this.deck.delete_from_deck(play);
+            return true;
+        } else return false;
+    }
+}

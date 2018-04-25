@@ -1,0 +1,300 @@
+
+texturepack.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 2, 1051
+  size: 1063, 339
+  orig: 1063, 339
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 2, 1392
+  size: 1225, 329
+  orig: 1225, 329
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 1924, 2511
+  size: 1145, 359
+  orig: 1145, 359
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 1924, 2872
+  size: 1857, 1133
+  orig: 1857, 1133
+  offset: 0, 0
+  index: -1
+Card0
+  rotate: false
+  xy: 1924, 1681
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card1
+  rotate: false
+  xy: 2356, 1681
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card10
+  rotate: false
+  xy: 3783, 3335
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card103
+  rotate: false
+  xy: 928, 715
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card109
+  rotate: false
+  xy: 1499, 1051
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card110
+  rotate: false
+  xy: 3783, 3671
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card114
+  rotate: false
+  xy: 2634, 2175
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card14
+  rotate: false
+  xy: 712, 715
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card15
+  rotate: false
+  xy: 3783, 2999
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card17
+  rotate: false
+  xy: 1229, 1387
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card18
+  rotate: false
+  xy: 1445, 1387
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card19
+  rotate: false
+  xy: 1144, 379
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card20
+  rotate: false
+  xy: 1067, 1051
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card21
+  rotate: false
+  xy: 928, 379
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card22
+  rotate: false
+  xy: 928, 43
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card23
+  rotate: false
+  xy: 712, 43
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card24
+  rotate: false
+  xy: 1283, 1051
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card5
+  rotate: false
+  xy: 1360, 715
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card6
+  rotate: false
+  xy: 2140, 1681
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card7
+  rotate: false
+  xy: 1661, 1387
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card8
+  rotate: false
+  xy: 2850, 2175
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+Card9
+  rotate: false
+  xy: 1144, 715
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+submit
+  rotate: false
+  xy: 3783, 2938
+  size: 149, 59
+  orig: 149, 59
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 2, 1723
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+base0001
+  rotate: false
+  xy: 1924, 2017
+  size: 708, 492
+  orig: 708, 492
+  offset: 0, 0
+  index: -1
+base0002
+  rotate: false
+  xy: 2, 557
+  size: 708, 492
+  orig: 708, 492
+  offset: 0, 0
+  index: -1
+base0003
+  rotate: false
+  xy: 3071, 2378
+  size: 708, 492
+  orig: 708, 492
+  offset: 0, 0
+  index: -1
+base0004
+  rotate: false
+  xy: 2, 63
+  size: 708, 492
+  orig: 708, 492
+  offset: 0, 0
+  index: -1
+bullet
+  rotate: false
+  xy: 2634, 2031
+  size: 101, 142
+  orig: 101, 142
+  offset: 0, 0
+  index: -1
+cover_card
+  rotate: false
+  xy: 1144, 43
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+cover_roles
+  rotate: false
+  xy: 712, 379
+  size: 214, 334
+  orig: 214, 334
+  offset: 0, 0
+  index: -1
+marker_e
+  rotate: false
+  xy: 1576, 951
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+marker_m
+  rotate: false
+  xy: 2737, 2075
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+marker_p
+  rotate: false
+  xy: 1360, 615
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+next
+  rotate: false
+  xy: 2, 2
+  size: 149, 59
+  orig: 149, 59
+  offset: 0, 0
+  index: -1
+next_card
+  rotate: false
+  xy: 1715, 1071
+  size: 64, 314
+  orig: 64, 314
+  offset: 0, 0
+  index: -1
+prev_card
+  rotate: false
+  xy: 3999, 3691
+  size: 64, 314
+  orig: 64, 314
+  offset: 0, 0
+  index: -1
+table
+  rotate: false
+  xy: 2, 2805
+  size: 1920, 1200
+  orig: 1920, 1200
+  offset: 0, 0
+  index: -1
