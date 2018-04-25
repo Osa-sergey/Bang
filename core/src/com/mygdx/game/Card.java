@@ -29,23 +29,14 @@ public class Card extends Actor {
             }
         }
     }
-    public Card(Integer id){
+    public Card(final Integer id){
         this.id=id;
         setSize(ViewConst.card_width,ViewConst.card_height);
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (visible) {
-                    if (getX() != ViewConst.playingCard_x && getY() != ViewConst.playingCard_y) {
-                        setPosition(ViewConst.playingCard_x, ViewConst.playingCard_y);
-                        Game.play_card = this;
-                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.set(
-                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.indexOf(this), null);
-                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.trimToSize();
-
-                    } else if (getX() == ViewConst.playingCard_x && getY() == ViewConst.playingCard_y) {
-
-                    }
+                    System.out.println(id);
                     super.clicked(event, x, y);
                 }
             }

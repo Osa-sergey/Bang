@@ -140,6 +140,10 @@ public class GameScreen implements Screen {
         }
         for (int i = 0; i <4; i++) {
             for (int j = 0; j < players.elementAt(i).deck.play_deck.capacity(); j++) {
+                if(j>ViewConst.deck_cardsVisible_number){
+                    players.elementAt(i).deck.play_deck.elementAt(j).setPosition(ViewConst.screen_width+(j-1-ViewConst.
+                            deck_cardsVisible_number)*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                }else
                 players.elementAt(i).deck.play_deck.elementAt(j).setPosition(ViewConst.deck_card_x_start+j*ViewConst.deck_card_hor,ViewConst.deck_card_y);
                 players.elementAt(i).deck.play_deck.elementAt(j).open = true;
                 group_actor[i].addActor(players.elementAt(i).deck.play_deck.elementAt(j));

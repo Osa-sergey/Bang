@@ -51,6 +51,7 @@ public class ViewConst {
     final static int player_line_hor_margin = 18;
 
     final static int deck_card_x_start = 711;
+    final static int deck_card_x_newStart = 860;
     final static int deck_card_hor = 80;
     final static int deck_card_y = 130;
 
@@ -77,4 +78,6 @@ public class ViewConst {
     final static int btnScrollPrev_y = 0;
 
     final static int deck_cardsVisible_number = 2;
+
+    final static int screen_width = 1920;
 }
