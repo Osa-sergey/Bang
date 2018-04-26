@@ -40,6 +40,7 @@ public class GameScreen implements Screen {
     }
     private Stage stage;
     static private MyGdxGame game;
+    static boolean isBangActive =false;
     Sprite table;
     Button next;
     Button submit;
@@ -58,6 +59,8 @@ public class GameScreen implements Screen {
     Group group_actor[];
     Base[] bases;
     Bullet [] bullets;
+    static Card tmpCard = null;
+
     public GameScreen (MyGdxGame game){
         assistant = new Assistant();
         this.game = game;
@@ -100,10 +103,18 @@ public class GameScreen implements Screen {
 
         roleId = new Integer[4];
         roleId = assistant.scan(in,roleId,"role_id.txt");
+        bullets = new Bullet[20];
+        for (int i = 0; i <20 ; i++) {
+            bullets[i] =  new Bullet();
+        }
         for (int i = 0; i <4; i++) {
+            Bullet[] bullets1= new Bullet[5];
+            for (int j = 0; j <5; j++) {
+                bullets1[j] = bullets[i*5+j];
+            }
             CardPerson person = new CardPerson(personId[i]);
             CardRole role = new CardRole(roleId[i]);
-            Player player = new Player(role,person,pack);
+            Player player = new Player(role,person,pack,bullets1);
             players.add(player);
         }
         discard = new Discarded();
@@ -124,10 +135,6 @@ public class GameScreen implements Screen {
         group_actor[3].setPosition(ViewConst.pr3_x,ViewConst.pr3_y);
         group_actor[3].setRotation(ViewConst.pr3_r);
 
-        bullets = new Bullet[20];
-        for (int i = 0; i <20 ; i++) {
-            bullets[i] =  new Bullet();
-        }
         for (int i = 0; i <4; i++) {
             group_actor[i].addActor(bases[i]);
             for (int j = 0; j <5 ; j++) {

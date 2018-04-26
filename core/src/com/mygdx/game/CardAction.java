@@ -12,6 +12,7 @@ public class CardAction extends Card {
         switch (super.getId()){
             case 5: { // бэнг
                 target.currentHealthPoints--;
+               target.bullets[target.currentHealthPoints].visible = false;
                 break;
             }
             case 6: // мимо

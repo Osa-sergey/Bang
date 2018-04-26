@@ -43,9 +43,15 @@ public class Card extends Actor {
                         && getY()<=ViewConst.btnNext_y)
                 {
                     Game.target = null;
+                    if(getId()!=5)
                         Game.target = Game.players.elementAt(Game.currentPlayer);
+                    else
+                    {
+                        GameScreen.isBangActive = true;
+                        GameScreen.tmpCard=Card.this;
+                        return;
+                    }
                     Game.players.elementAt(Game.currentPlayer).play_card(Card.this,Game.target);
-                    super.clicked(event, x, y);
                 }
             }
         });

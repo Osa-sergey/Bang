@@ -106,6 +106,10 @@ public class CardPerson extends Card{
                        for (int i = 0; i <Game.currentPlayersNumber ; i++) {
                            if(getId().equals(Game.players.elementAt(i).person.getId())){
                                Game.target = Game.players.elementAt(i);
+                               if(GameScreen.isBangActive){
+                                   Game.players.elementAt(Game.currentPlayer).play_card(GameScreen.tmpCard,Game.target);
+                                   GameScreen.isBangActive = false;
+                               }
                            }
                        }
                    }

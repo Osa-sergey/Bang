@@ -16,9 +16,10 @@ public class Player extends Actor {
     Integer bangsInStep = 0; //количество выстрелов за ход
     Integer currentBangsInStep; //количество оставшихся выстрелов
     Deck deck = null;//ваша рука
+    Bullet[] bullets;
     Vector<CardEffect> effects = new Vector<CardEffect>(0); //набор карт эффектов
     //конструктор
-    public Player(CardRole cardRole, CardPerson cardPerson,Pack pack){
+    public Player(CardRole cardRole, CardPerson cardPerson,Pack pack,Bullet[] bullets){
         weapon = new CardWeapon(25); // создание базового оружия статы 1/1
         distBang = weapon.distBang;
         bangsInStep = weapon.bangsInStep;
@@ -36,6 +37,8 @@ public class Player extends Actor {
         for (int i = 0; i <maxHealthPoints; i++) {
             deck.add_in_deck(pack.pack_arr.pop());
         }
+        this.bullets = bullets;
+
     }
     public void delete_player(Game game, boolean key){
         for (int i = 0; i <this.deck.play_deck.size(); i++) {
