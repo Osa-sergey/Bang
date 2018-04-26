@@ -58,7 +58,6 @@ public class GameScreen implements Screen {
     Discarded discard;
     Group group_actor[];
     Base[] bases;
-    Bullet [] bullets;
     static Card tmpCard = null;
 
     public GameScreen (MyGdxGame game){
@@ -103,14 +102,13 @@ public class GameScreen implements Screen {
 
         roleId = new Integer[4];
         roleId = assistant.scan(in,roleId,"role_id.txt");
-        bullets = new Bullet[20];
-        for (int i = 0; i <20 ; i++) {
-            bullets[i] =  new Bullet();
-        }
         for (int i = 0; i <4; i++) {
             Bullet[] bullets1= new Bullet[5];
             for (int j = 0; j <5; j++) {
-                bullets1[j] = bullets[i*5+j];
+
+                bullets1[j] = new Bullet();
+                bullets1[j].setPosition(ViewConst.bul_line_start_x+ViewConst.bul_line_hor_margin*j,
+                        ViewConst.bul_line_start_y);
             }
             CardPerson person = new CardPerson(personId[i]);
             CardRole role = new CardRole(roleId[i]);
@@ -138,9 +136,7 @@ public class GameScreen implements Screen {
         for (int i = 0; i <4; i++) {
             group_actor[i].addActor(bases[i]);
             for (int j = 0; j <5 ; j++) {
-                bullets[j+5*i].setPosition(ViewConst.bul_line_start_x+ViewConst.bul_line_hor_margin*j,
-                        ViewConst.bul_line_start_y);
-                group_actor[i].addActor(bullets[j+5*i]);
+                group_actor[i].addActor(players.elementAt(i).bullets[j]);
             }
         }
         for (int i = 0; i <4; i++) {
@@ -162,7 +158,7 @@ public class GameScreen implements Screen {
             }
             for (int j = 0; j <5 ; j++) {
                 if(players.elementAt(i).currentHealthPoints-1<j){
-                    bullets[j+i*5].visible = false;
+                    players.elementAt(i).bullets[j].visible = false;
                 }
             }
             players.elementAt(i).role.setPosition(ViewConst.player_line_left_margin,ViewConst.player_line_y);
@@ -198,12 +194,7 @@ public class GameScreen implements Screen {
             next_card.visible = false;
             prev_card.visible = false;
         }
-    /*    for (int i = 0; i <Game.currentPlayersNumber ; i++) {
-            System.out.println(Game.players.elementAt(i).person.getId());
-            System.out.println(Game.players.elementAt(i).currentHealthPoints);
-        }
-        System.out.println("____________");
-     */ Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(0, 0, 0, 0);
         stage.getBatch().begin();
         table.draw(stage.getBatch());

@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-
 public class CardAction extends Card {
 
     public CardAction(Integer id) {
@@ -11,8 +9,16 @@ public class CardAction extends Card {
     public void play_card_action(Player target){
         switch (super.getId()){
             case 5: { // бэнг
+                for (int i = 0; i <target.deck.play_deck.size() ; i++) {
+                    if(target.deck.play_deck.elementAt(i).getId()==6){
+                        //todo удалить карту мимо у target
+                        Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
+                        return;
+                    }
+                }
                 target.currentHealthPoints--;
-               target.bullets[target.currentHealthPoints].visible = false;
+                target.bullets[target.currentHealthPoints].visible = false;
+                Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
                 break;
             }
             case 6: // мимо
