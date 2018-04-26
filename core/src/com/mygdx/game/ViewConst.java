@@ -80,4 +80,7 @@ public class ViewConst {
     final static int deck_cardsVisible_number = 2;
 
     final static int screen_width = 1920;
+
+    final static int player_person_x = 241;
+    final static int player_person_y = 19;
 }
