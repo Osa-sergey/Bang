@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -59,7 +58,6 @@ public class GameScreen implements Screen {
     Group group_actor[];
     Base[] bases;
     Bullet [] bullets;
-
     public GameScreen (MyGdxGame game){
         assistant = new Assistant();
         this.game = game;

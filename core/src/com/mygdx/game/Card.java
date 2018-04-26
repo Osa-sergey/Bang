@@ -36,15 +36,11 @@ public class Card extends Actor {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                if (visible && (getX()>=ViewConst.deck_card_x_start
+                if (visible && getX()>=ViewConst.deck_card_x_start
                         && getX()<=ViewConst.screen_width
                         && getY()>=0
                         && getY()<=ViewConst.btnNext_y)
-                        ||
-                        getX()>=ViewConst.player_person_x
-                        && getX()<=ViewConst.player_person_x+ViewConst.card_width
-                        && getY()>=ViewConst.player_person_y
-                        &&getY()<=ViewConst.player_person_y+ViewConst.card_height) {
+                {
                     System.out.println(id);
                     super.clicked(event, x, y);
                 }

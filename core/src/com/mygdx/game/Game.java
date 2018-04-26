@@ -12,6 +12,7 @@ public class Game {
    static Pack pack; // колода
    static Discarded dis; // сброс
    static ClickListener play_card = null;
+   static Player target = null;
 
     //конструктор
     public Game(Vector<Player> play,Pack pack,Discarded discard){

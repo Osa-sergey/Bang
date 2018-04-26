@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class CardPerson extends Card{
 
@@ -29,7 +31,7 @@ public class CardPerson extends Card{
         JohnnyKish
     }
     // конструктор
-    public CardPerson(Integer id) {
+    public CardPerson(final Integer id) {
         super(id);
         this.id = id;
         switch (id){
@@ -92,6 +94,24 @@ public class CardPerson extends Card{
                 person=Persons.JohnnyKish;
                 break;
         }
+        addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               if(getX()>=ViewConst.player_person_x
+                        && getX()<=ViewConst.player_person_x+ViewConst.card_width
+                        && getY()>=ViewConst.player_person_y
+                        &&getY()<=ViewConst.player_person_y+ViewConst.card_height
+                       ){
+                   if(!getId().equals(Game.players.elementAt(Game.currentPlayer).person.getId())){
+                       for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+                           if(getId().equals(Game.players.elementAt(i).person.getId())){
+                               Game.target = Game.players.elementAt(i);
+                           }
+                       }
+                   }
+               }
+            }
+        });
     }
 
     public Persons getPerson() {
