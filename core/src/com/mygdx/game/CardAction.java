@@ -1,20 +1,23 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+
 public class CardAction extends Card {
 
     public CardAction(Integer id) {
         super(id);
     }
 
-    public void play_card_action(Game game,Player target){
+    public void play_card_action(Player target){
         switch (super.getId()){
-            case 5: // бэнг
+            case 5: { // бэнг
+                target.currentHealthPoints--;
                 break;
+            }
             case 6: // мимо
                 break;
             case 7: { // пиво
                 target.currentHealthPoints++;
-                //todo перерисовать кол-во hp
                 break;
             }
             case 8: // салун
@@ -36,6 +39,6 @@ public class CardAction extends Card {
             case 16: // дуэль
                 break;
         }
-        game.dis.add_in_discarded(game.players.elementAt(game.currentPlayer).deck.play_deck.elementAt(game.players.elementAt(game.currentPlayer).deck.play_deck.indexOf(this)));
+     //   Game.dis.add_in_discarded(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(Game.players.elementAt(Game.currentPlayer).deck.play_deck.indexOf(this)));
     }//уже скидывает карту в с
 }

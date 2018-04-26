@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -41,7 +42,9 @@ public class Card extends Actor {
                         && getY()>=0
                         && getY()<=ViewConst.btnNext_y)
                 {
-                    System.out.println(id);
+                    Game.target = null;
+                        Game.target = Game.players.elementAt(Game.currentPlayer);
+                    Game.players.elementAt(Game.currentPlayer).play_card(Card.this,Game.target);
                     super.clicked(event, x, y);
                 }
             }

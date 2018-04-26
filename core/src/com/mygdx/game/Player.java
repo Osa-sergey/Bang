@@ -1,11 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import java.util.Vector;
 
 public class Player extends Actor {
@@ -24,6 +20,9 @@ public class Player extends Actor {
     //конструктор
     public Player(CardRole cardRole, CardPerson cardPerson,Pack pack){
         weapon = new CardWeapon(25); // создание базового оружия статы 1/1
+        distBang = weapon.distBang;
+        bangsInStep = weapon.bangsInStep;
+        currentBangsInStep = bangsInStep;
         person = cardPerson;
         role = cardRole;
         maxHealthPoints = cardPerson.getHp();
@@ -52,19 +51,19 @@ public class Player extends Actor {
         game.players.trimToSize();
         game.currentPlayersNumber--;
     } //удаляет все карты игрока переводит хода по ключу
-    private boolean can_play_card(Integer id,Game game){
+    private boolean can_play_card(Integer id){
         switch (id){
             case 0:
             case 1:
-            case 2:
-            case 4:{
+           // case 2:
+           /* case 4:*/{
                 for (int i = 0; i <effects.size(); i++) {
                     if(effects.get(i).getId().equals(id))
                         return false;
                 }
                 return true;
             }
-            case 3:{
+          /*  case 3:{
                 for (int i = 0; i <effects.size(); i++) {
                     if(effects.get(i).getId().equals(id))
                         return false;
@@ -72,20 +71,32 @@ public class Player extends Actor {
                 if(role.getRole().equals(CardRole.Roles.Sceriffo)) return false;
                 return true;
             }
-            case 5:{
-                if(game.players.elementAt(game.currentPlayer).currentBangsInStep!=0)
+        */  case 5:{
+                if(Game.players.elementAt(Game.currentPlayer).currentBangsInStep!=0)
+                {
                     return true;
+                }
                 else return false;
             }
             case 6:{
-
+                return false;
             }
             case 7:{
-                if((game.currentPlayersNumber>2)&&(game.players.elementAt(game.currentPlayer).currentHealthPoints<game.players.elementAt(game.currentPlayer).maxHealthPoints)){
+                if((Game.currentPlayersNumber>2)&&(Game.players.elementAt(Game.currentPlayer).currentHealthPoints<Game.players.elementAt(Game.currentPlayer).maxHealthPoints)){
                     return true;
                 }else return false;
             }
-            case 12:{
+            case 9:{
+                if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()+2<=16)
+                    return true;
+                else return false;
+            }
+            case 10:{
+                if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()+3<=16)
+                    return true;
+                else return false;
+            }
+           /* case 12:{
                 int cur = 0;
                 for (int i = 0; i <game.currentPlayersNumber ; i++) {
                     if (game.players.elementAt(i).equals(this)) {
@@ -102,36 +113,30 @@ public class Player extends Actor {
                         (this.effects.size()!=0) ||
                         (!this.deck.play_deck.isEmpty())) return true;
                 else return false;
-            }
-            case 13:{
+            }*/
+           /* case 13:{
                 if((this.weapon.bangsInStep!=1 && this.weapon.distBang!=1)||
                         (this.effects.size()!=0) ||
                         (!this.deck.play_deck.isEmpty())) return true;
                 else return false;
-            }
+            } */
             default: return true;
         }
     }
-    public boolean play_card(Game game,Card play) {
-        if (can_play_card(play.getId(), game)) {
+    public boolean play_card(Card play,Player target) {
+        if (can_play_card(play.getId())) {
             if (play instanceof CardWeapon) {
-                if (!(this.weapon.distBang == 1 && this.weapon.bangsInStep == 1)) {
-                    game.dis.add_in_discarded(this.weapon);
+            /*    if (!(this.weapon.distBang == 1 && this.weapon.bangsInStep == 1)) {
+                    Game.dis.add_in_discarded(this.weapon);
                 }
-                this.weapon.anset_weapon(this, game);
-                ((CardWeapon) play).set_card_weapon(this);
+                this.weapon.anset_weapon(this);
+              */  ((CardWeapon) play).set_card_weapon(this);
             } else if (play instanceof CardAction) {
-                ((CardAction) play).play_card_action(game, this);
-                for (int i = 0; i < game.currentPlayersNumber; i++) {
-                    if (game.players.elementAt(i).currentHealthPoints <= 0) {
-
-                    }
-                }
+                ((CardAction) play).play_card_action(target);
             } else if (play instanceof CardEffect) {
                 ((CardEffect) play).set_anset_card_effect(this, true);
-                //todo перерисовать список эффектов
             }
-            this.deck.delete_from_deck(play);
+        //    this.deck.delete_from_deck(play);
             return true;
         } else return false;
     }

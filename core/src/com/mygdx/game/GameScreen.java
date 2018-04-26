@@ -191,7 +191,12 @@ public class GameScreen implements Screen {
             next_card.visible = false;
             prev_card.visible = false;
         }
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    /*    for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+            System.out.println(Game.players.elementAt(i).person.getId());
+            System.out.println(Game.players.elementAt(i).currentHealthPoints);
+        }
+        System.out.println("____________");
+     */ Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(0, 0, 0, 0);
         stage.getBatch().begin();
         table.draw(stage.getBatch());
