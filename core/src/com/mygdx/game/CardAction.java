@@ -29,7 +29,7 @@ public class CardAction extends Card {
                 break;
             }
             case 8: // салун
-                for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+                for (int i = 0; i <Game.currentPlayersNumber; i++) {
                     if(!Game.players.elementAt(i).maxHealthPoints.equals(Game.players.elementAt(i).currentHealthPoints)){
                         Game.players.elementAt(i).bullets[Game.players.elementAt(i).currentHealthPoints].visible = true;
                         Game.players.elementAt(i).currentHealthPoints++;
@@ -46,8 +46,27 @@ public class CardAction extends Card {
                 break;
             case 13: // красотка
                 break;
-            case 14: // гатлинг
+            case 14: { // гатлинг
+                boolean flag = false;
+                for (int i = 0; i < Game.currentPlayersNumber; i++) {
+                    if (!Game.players.elementAt(i).equals(target)) {
+                      /*  for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
+                            if (Game.players.elementAt(i).deck.play_deck.elementAt(j).getId() == 6) {
+                                //todo удалить карту мимо у target
+                                flag=true;
+                                break;
+                            }
+                        }
+                       */ if(!flag) {
+                            Game.players.elementAt(i).currentHealthPoints--;
+                            Game.players.elementAt(i).bullets[Game.players.elementAt(i).
+                                    currentHealthPoints].visible = false;
+                        }
+                        flag = false;
+                    }
+                }
                 break;
+            }
             case 15: // индейцы
                 break;
             case 16: // дуэль
