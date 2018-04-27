@@ -89,6 +89,12 @@ public class Player extends Actor {
                     return true;
                 }else return false;
             }
+            case 8:{
+                for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+                    if(!Game.players.elementAt(i).maxHealthPoints.equals(Game.players.elementAt(i).currentHealthPoints)) return true;
+                }
+                return false;
+            }
             case 9:{
                 if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()+2<=16)
                     return true;

@@ -29,6 +29,12 @@ public class CardAction extends Card {
                 break;
             }
             case 8: // салун
+                for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+                    if(!Game.players.elementAt(i).maxHealthPoints.equals(Game.players.elementAt(i).currentHealthPoints)){
+                        Game.players.elementAt(i).bullets[Game.players.elementAt(i).currentHealthPoints].visible = true;
+                        Game.players.elementAt(i).currentHealthPoints++;
+                    }
+                }
                 break;
             case 9: // дилижанс
                 break;
