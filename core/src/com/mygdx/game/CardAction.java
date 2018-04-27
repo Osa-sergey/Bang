@@ -67,8 +67,27 @@ public class CardAction extends Card {
                 }
                 break;
             }
-            case 15: // индейцы
+            case 15: { // индейцы
+                boolean flag = false;
+                for (int i = 0; i < Game.currentPlayersNumber; i++) {
+                    if (!Game.players.elementAt(i).equals(target)) {
+                      /*  for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
+                            if (Game.players.elementAt(i).deck.play_deck.elementAt(j).getId() == 5) {
+                                //todo удалить карту бэнг у target
+                                flag=true;
+                                break;
+                            }
+                        }
+                       */ if(!flag) {
+                            Game.players.elementAt(i).currentHealthPoints--;
+                            Game.players.elementAt(i).bullets[Game.players.elementAt(i).
+                                    currentHealthPoints].visible = false;
+                        }
+                        flag = false;
+                    }
+                }
                 break;
+            }
             case 16: // дуэль
                 break;
         }
