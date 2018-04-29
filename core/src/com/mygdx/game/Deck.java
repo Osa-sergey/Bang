@@ -13,8 +13,6 @@ public class Deck {
     public void add_in_deck(Card input){
         input.setRotation(0);
         play_deck.add(input);
-        //todo показать карту игроку
-        //todo перерисовать список карт
     }//добавление карты без проверки
     public void add_in_deck(Game game,Integer quantity){
         for (int i = 0; i <quantity; i++) {

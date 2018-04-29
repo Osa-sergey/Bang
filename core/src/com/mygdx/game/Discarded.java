@@ -8,7 +8,6 @@ public class Discarded {
     // конструктор
     public Discarded(){
         dis_arr = new Card[80];
-
     }
     private void random_dis(){
         Random random = new Random(System.currentTimeMillis());

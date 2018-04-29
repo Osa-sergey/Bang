@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -19,6 +18,9 @@ public class Menu implements Screen {
         game.setScreen(screen);
     }
     public Menu(MyGdxGame game) {
+        /*
+        код расположения кнопок
+         */
         this.game = game;
         stage = new Stage(MyGdxGame.getViewport());
         table = new Sprite(Assets.get_texture_region("back"));
@@ -43,7 +45,6 @@ public class Menu implements Screen {
     public Stage getStage() {
         return stage;
     }
-
 
     public Button[] getButtons() {
         return buttons;

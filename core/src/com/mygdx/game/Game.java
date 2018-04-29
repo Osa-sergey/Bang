@@ -32,12 +32,14 @@ public class Game {
         }
         currentPlayer = 0;
     }
+    //переход хода
     public void next_turn(){
         if(currentPlayer==0){
             currentPlayer=currentPlayersNumber-1;
         }else{
             currentPlayer--;
         }
+        // обновляем оружие
         players.elementAt(currentPlayer).currentBangsInStep = players.elementAt(currentPlayer).weapon.bangsInStep;
         players.elementAt(currentPlayer).distBang = players.elementAt(currentPlayer).weapon.distBang;
     }

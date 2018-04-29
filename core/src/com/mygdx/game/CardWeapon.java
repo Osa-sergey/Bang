@@ -29,6 +29,7 @@ public class CardWeapon extends Card {
                 break;
         }
     }
+    //поставить карту оружия
     public void set_card_weapon(Player player){
         player.distBang +=this.distBang;
         player.bangsInStep +=this.bangsInStep;
@@ -37,6 +38,7 @@ public class CardWeapon extends Card {
         }
         player.weapon=this;
     }
+    //убрать карту оружия
     public void anset_weapon(Player player, Game game){
         player.distBang -=this.distBang;
         player.bangsInStep -=this.bangsInStep;

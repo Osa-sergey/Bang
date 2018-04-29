@@ -50,11 +50,11 @@ public class Pack {
                 pack_arr.push(newCardWeapon);
         }
     }// добавление в pack новых карт при создании
-    public Card look_card(Game game){
+   /* public Card look_card(Game game){
         if(pack_arr.empty()){
             game.dis.reset_pack(this);
         }
         pack_arr.peek();//todo показать карту view
         return pack_arr.pop();
     }//удаляет карту из колоды просматривая её
-}
+*/}

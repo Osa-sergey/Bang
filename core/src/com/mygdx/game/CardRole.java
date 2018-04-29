@@ -32,7 +32,6 @@ public class CardRole extends Card {
         if(role== Roles.Sceriffo) this.open = true;
         super.draw(batch, parentAlpha);
     }
-
     public void setRole(Roles role) {
         this.role = role;
     }

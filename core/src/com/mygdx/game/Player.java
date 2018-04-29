@@ -53,6 +53,7 @@ public class Player extends Actor {
         game.players.trimToSize();
         game.currentPlayersNumber--;
     } //удаляет все карты игрока переводит хода по ключу
+    //проверка возможности сыграть карту
     private boolean can_play_card(Integer id){
         switch (id){
             case 0:
@@ -141,9 +142,9 @@ public class Player extends Actor {
               */  ((CardWeapon) play).set_card_weapon(this);
             } else if (play instanceof CardAction) {
                 ((CardAction) play).play_card_action(target);
-/*
-блок отвечающий за добавление карты в сброс и удаления с руки
- */
+            /*
+            блок отвечающий за добавление карты в сброс и удаления с руки
+            */
                 CardAction tmp = new CardAction(play.getId());
                 tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
                 GameScreen.getStage().addActor(tmp);
@@ -155,6 +156,9 @@ public class Player extends Actor {
             } else if (play instanceof CardEffect) {
                 ((CardEffect) play).set_anset_card_effect(this, true);
             }
+            /*
+            код сдвига карт
+             */
             if(GameScreen.prev_card.visible){
                 for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
@@ -171,23 +175,6 @@ public class Player extends Actor {
                     }else break;
                 }
             }
-            /*
-            не до конца работающий код сдвига карт
-             */
-            /*
-            for (int i = 0; i <Game.currentPlayersNumber; i++) {
-                for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.capacity(); j++) {
-                    if (j > ViewConst.deck_cardsVisible_number) {
-                        Game.players.elementAt(i).deck.play_deck.elementAt(j).setPosition(ViewConst.screen_width + (j - 1 - ViewConst.
-                                deck_cardsVisible_number) * ViewConst.deck_card_hor, ViewConst.deck_card_y);
-                    } else
-                        Game.players.elementAt(i).deck.play_deck.elementAt(j).setPosition(ViewConst.deck_card_x_start + j * ViewConst.deck_card_hor, ViewConst.deck_card_y);
-                    Game.players.elementAt(i).deck.play_deck.elementAt(j).open = true;
-                    if(j>ViewConst.deck_cardsVisible_number)
-                        Game.players.elementAt(i).deck.play_deck.elementAt(j).visible = false;
-                }
-            }*/
-            if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number+1){
                 /*
                 перемещение начала карт в исходное положение
                 */
@@ -199,6 +186,7 @@ public class Player extends Actor {
                                 setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                     }else break;
                 }
+            if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number+1){
                 GameScreen.next_card.visible = false;
                 GameScreen.prev_card.visible = false;
             }

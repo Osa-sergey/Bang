@@ -4,6 +4,7 @@ public class CardEffect extends Card {
     public CardEffect(Integer id) {
         super(id);
     }
+    // функция устанавливает эффекты и убирает их по ключу
     public void set_anset_card_effect(Player player,boolean flag){
         switch (this.getId()){
             case 0: // мустанг
@@ -33,5 +34,5 @@ public class CardEffect extends Card {
         set_anset_card_effect(player,false);
         //todo перерисовывать список эффектов
         return this;
-    }//удаляет карту из списка эффектов и возвращает её
+    }
 }
