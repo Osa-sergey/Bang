@@ -156,36 +156,35 @@ public class Player extends Actor {
             } else if (play instanceof CardEffect) {
                 ((CardEffect) play).set_anset_card_effect(this, true);
             }
-            /*
-            код сдвига карт
-             */
             if(GameScreen.prev_card.visible){
                 for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_newStart + (i-2-ViewConst.deck_cardsVisible_number)* ViewConst.deck_card_hor,ViewConst.deck_card_y);
                 }
+                if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number+1){
+                    for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
+                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
+                    }
+                }
             }
             if(GameScreen.next_card.visible){
                 for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                     if(i<=ViewConst.deck_cardsVisible_number) {
-                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
-                                visible = true;
+                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
                         Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
                                 setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                     }else break;
                 }
             }
-                /*
-                перемещение начала карт в исходное положение
-                */
+            if(!GameScreen.next_card.visible && !GameScreen.prev_card.visible){
                 for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
-                    if(i<=ViewConst.deck_cardsVisible_number) {
-                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
-                                visible = true;
-                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
-                                setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
-                    }else break;
+                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
+                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                            setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                 }
+            }
             if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()<=ViewConst.deck_cardsVisible_number+1){
                 GameScreen.next_card.visible = false;
                 GameScreen.prev_card.visible = false;

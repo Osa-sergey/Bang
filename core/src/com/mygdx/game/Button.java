@@ -138,8 +138,12 @@ public class Button extends Actor {
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
                                 if(i>ViewConst.deck_cardsVisible_number){
                                     gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
-                                }else
-                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = true;
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.screen_width+(i-1-ViewConst.
+                                            deck_cardsVisible_number)*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                                }else{
+                                    gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = true;
+                                    Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_start+i*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                                }
                             }
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.capacity(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).visible = true;

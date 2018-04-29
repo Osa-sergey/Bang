@@ -22,7 +22,8 @@ public class CardAction extends Card {
                         GameScreen.getStage().addActor(tmp);
                         Game.dis.add_in_discarded(tmp);
                         target.deck.delete_from_deck(target.deck.play_deck.elementAt(i));
-                        GameScreen.group_actor[0].removeActor(target.deck.play_deck.elementAt(i));
+                        //todo поменять номер группы
+                        GameScreen.group_actor[Game.players.indexOf(target)].removeActor(target.deck.play_deck.elementAt(i));
 
                         //уменьшение кол-ва оставшихся выстрелов в этот ход
                         Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
@@ -86,7 +87,8 @@ public class CardAction extends Card {
                                 GameScreen.getStage().addActor(tmp);
                                 Game.dis.add_in_discarded(tmp);
                                 Game.players.elementAt(i).deck.delete_from_deck(Game.players.elementAt(i).deck.play_deck.elementAt(j));
-                                GameScreen.group_actor[0].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+                                //todo поменять номер группы
+                                GameScreen.group_actor[i].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
 
                                 flag=true;
                                 break;
@@ -118,7 +120,8 @@ public class CardAction extends Card {
                                 GameScreen.getStage().addActor(tmp);
                                 Game.dis.add_in_discarded(tmp);
                                 Game.players.elementAt(i).deck.delete_from_deck(Game.players.elementAt(i).deck.play_deck.elementAt(j));
-                                GameScreen.group_actor[0].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+                                //todo поменять номер группы
+                                GameScreen.group_actor[i].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
 
                                 flag=true;
                                 break;
