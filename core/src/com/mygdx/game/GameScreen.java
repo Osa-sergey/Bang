@@ -14,6 +14,9 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class GameScreen implements Screen {
+/*
+класс считывающий из файла данные и перемешивающий их
+*/
     class Assistant {
     Assistant() {}
 
@@ -38,6 +41,9 @@ public class GameScreen implements Screen {
             return input;
         }
     }
+/*
+    поля класса
+*/
     static private Stage stage;
     static private MyGdxGame game;
     static boolean isBangActive =false;
@@ -60,12 +66,16 @@ public class GameScreen implements Screen {
     Base[] bases;
     static Card tmpCard = null;
 
+    //конструктор
     public GameScreen (MyGdxGame game){
         assistant = new Assistant();
         this.game = game;
         stage = new Stage(MyGdxGame.getViewport());
         table = new Sprite(Assets.get_texture_region("table"));
         table.setSize(stage.getWidth(),stage.getHeight());
+        /*
+        создание кнопок
+         */
         next = new Button(5,game,this);
         next.setSize(ViewConst.btnNext_width,ViewConst.btnNext_height);
         next.setPosition(ViewConst.btnNext_x,ViewConst.btnNext_y);
@@ -85,6 +95,9 @@ public class GameScreen implements Screen {
         prev_card.setPosition(ViewConst.btnScrollPrev_x,ViewConst.btnScrollPrev_y);
         prev_card.visible = false;
         stage.addActor(prev_card);
+        /*
+        создание сброса и колоды
+         */
         discarded = new Discarded();
         cards = new Integer[61];
         cards = assistant.scan(in,cards,"id.txt");
@@ -94,7 +107,9 @@ public class GameScreen implements Screen {
             stage.addActor(pack.pack_arr.elementAt(i));
             pack.pack_arr.elementAt(i).open=false;
         }
-
+        /*
+        создание игроков
+         */
         players = new Vector<Player>(4);
 
         personId =  new Integer[4];
@@ -115,9 +130,15 @@ public class GameScreen implements Screen {
             Player player = new Player(role,person,pack,bullets1);
             players.add(player);
         }
+        /*
+        создание класса игры
+         */
         discard = new Discarded();
         game_= new Game(players,pack,discard);
 
+        /*
+        создание графического отображения игроков
+         */
         group_actor = new Group[4];
         bases = new Base[4];
         for (int i = 0; i <4 ; i++) {
@@ -151,6 +172,7 @@ public class GameScreen implements Screen {
                 if(j>ViewConst.deck_cardsVisible_number)
                 players.elementAt(i).deck.play_deck.elementAt(j).visible = false;
             }
+            //описание текущего игрока
             if(i!=0){
                 for (int j = 0; j <players.elementAt(i).deck.play_deck.capacity() ; j++) {
                     players.elementAt(i).deck.play_deck.elementAt(j).visible =false;
@@ -180,9 +202,11 @@ public class GameScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
     }
-
     @Override
     public void render(float delta) {
+        /*
+        проверка на показывание стрелок скрола колоды
+         */
         if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>ViewConst.deck_cardsVisible_number+1
                 && !prev_card.visible
                 && !prev_card.inProcess
@@ -194,6 +218,9 @@ public class GameScreen implements Screen {
             next_card.visible = false;
             prev_card.visible = false;
         }
+        /*
+        очистка экрана и отрисовка изображения
+         */
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(0, 0, 0, 0);
         stage.getBatch().begin();
@@ -201,27 +228,22 @@ public class GameScreen implements Screen {
         stage.getBatch().end();
         stage.draw();
     }
-
     @Override
     public void resize(int width, int height) {
         stage.getViewport().setScreenSize(width,height);
     }
-
     @Override
     public void pause() {
 
     }
-
     @Override
     public void resume() {
 
     }
-
     @Override
     public void hide() {
 
     }
-
     @Override
     public void dispose() {
         stage.dispose();
