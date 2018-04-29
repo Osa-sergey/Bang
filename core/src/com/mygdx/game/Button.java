@@ -15,23 +15,41 @@ public class Button extends Actor {
     boolean inProcess = false;
     public Button (Integer id, final MyGdxGame game, final GameScreen gameScreen){
         this.id=id;
+        /*
+        добавление прослушивания нажатия кнопок
+         */
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (visible) {
                     switch (getId()) {
+                        /*
+                        кнопка старта игры, переход на игровой экран
+                         */
                         case 1:
                             game.setScreen(new GameScreen(game));
                             break;
+                            /*
+                            переход на страницу с правилами
+                             */
                         case 2:
                             game.setScreen(new Rules());
                             break;
+                            /*
+                            кнопка выхода из игры
+                             */
                         case 3:
                             Gdx.app.exit();
                             break;
+                            /*
+                            кнопка next
+                             */
                         case 5: {
                             gameScreen.prev_card.inProcess = true;
                             gameScreen.next_card.inProcess = true;
+                            /*
+                            расставление карт и деланье их видимыми
+                             */
                             if(!gameScreen.next_card.visible) {
                                 for (int i = 0; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                     if (i <= ViewConst.deck_cardsVisible_number) {
@@ -48,6 +66,9 @@ public class Button extends Actor {
                                             setPosition(ViewConst.screen_width + (i - 2 - ViewConst.deck_cardsVisible_number) * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                                 }
                             }
+                            /*
+                            скрывание карт, эффектов и роли
+                             */
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).
                                         visible = false;
@@ -57,14 +78,26 @@ public class Button extends Actor {
                                         visible = false;
                             }
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = false;
+                            /*
+                            передача хода
+                             */
                             gameScreen.game_.next_turn();
+                            /*
+                            скрытие кнопок
+                             */
                             visible = false;
                             gameScreen.next_card.visible = false;
                             gameScreen.prev_card.visible = false;
                             gameScreen.submit.visible = true;
                             break;
                         }
+                        /*
+                        принятие хода
+                         */
                         case 6: {
+                            /*
+                            поварачивание игроков на поле
+                             */
                             switch (gameScreen.game_.currentPlayersNumber) {
                                 case 4:
                                     gameScreen.group_actor[0].setPosition(ViewConst.pr1_x, ViewConst.pr1_y);
@@ -91,12 +124,17 @@ public class Button extends Actor {
                                     gameScreen.group_actor[1].setRotation(ViewConst.pr0_r);
 
                             }
+                            /*
+                            синхронизация графики и логики
+                             */
                             Group tmp_group = gameScreen.group_actor[gameScreen.game_.currentPlayersNumber - 1];
                             for (int i = gameScreen.game_.currentPlayersNumber - 1; i > 0; i--) {
                                 gameScreen.group_actor[i] = gameScreen.group_actor[i - 1];
                             }
                             gameScreen.group_actor[0] = tmp_group;
-
+                            /*
+                            отображение карт, эффектов и роли
+                             */
                             for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
                                 if(i>ViewConst.deck_cardsVisible_number){
                                     gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
@@ -107,30 +145,54 @@ public class Button extends Actor {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).visible = true;
                             }
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = true;
+                            /*
+                            скрытие кнопок
+                             */
                             visible = false;
                             gameScreen.next.visible = true;
                             gameScreen.next_card.inProcess = false;
                             gameScreen.prev_card.inProcess = false;
                             break;
                         }
+                        /*
+                        кнопка слайдера вперед
+                         */
                         case 7:{
+                            /*
+                            скрытие кнопок
+                             */
                             gameScreen.prev_card.visible = true;
                             visible = false;
+                            /*
+                             скрытие текущих карт и их смещение вниз
+                             */
                             for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 if(i<=ViewConst.deck_cardsVisible_number) {
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = false;
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, -ViewConst.card_height);
                                }else break;
                             }
+                            /*
+                            открытие невлезающих карт и их сдвиг влево
+                             */
                             for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_newStart + (i-2-ViewConst.deck_cardsVisible_number)* ViewConst.deck_card_hor,ViewConst.deck_card_y);
                             }
                             break;
                         }
+                        /*
+                        кнопка слайдера назад
+                         */
                         case 8:{
+                            /*
+                            скрытие кнопок
+                             */
                             gameScreen.next_card.visible = true;
                             visible = false;
+                            /*
+                            перемещение начала карт в исходное положение
+                             */
                             for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 if(i<=ViewConst.deck_cardsVisible_number) {
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
@@ -139,6 +201,9 @@ public class Button extends Actor {
                                             setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
                                 }else break;
                             }
+                            /*
+                            перемещение конца карт в исходное положение
+                             */
                             for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
                                         visible = false;
@@ -148,7 +213,6 @@ public class Button extends Actor {
                             break;
                         }
                     }
-                    super.clicked(event, x, y);
                 }
             }
         });

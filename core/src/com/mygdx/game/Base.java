@@ -2,7 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
+/*
+планшенты игроков
+ */
 public class Base extends Actor {
     private Integer id;
     public void draw(Batch batch, float parentAlpha) {

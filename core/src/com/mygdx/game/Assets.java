@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Assets {
     private AssetManager assetManager;
-
+    /*
+    класс отвечает за отрисовку кусков изображения из атласа
+     */
     private static TextureAtlas atlas;
     public Assets (){
         assetManager = new AssetManager();
