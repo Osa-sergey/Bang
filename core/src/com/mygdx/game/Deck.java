@@ -23,7 +23,7 @@ public class Deck {
             }
             add_in_deck(game.pack.pack_arr.pop());
         }
-    }//добавление карт в deck
+    }
     public void delete_from_deck(Card card){
         play_deck.removeElementAt(play_deck.indexOf(card));
         play_deck.trimToSize();

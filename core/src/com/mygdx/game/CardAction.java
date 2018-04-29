@@ -9,16 +9,23 @@ public class CardAction extends Card {
     public void play_card_action(Player target){
         switch (super.getId()){
             case 5: { // бэнг
-            /*    for (int i = 0; i <target.deck.play_deck.size() ; i++) {
+                for (int i = 0; i <target.deck.play_deck.size() ; i++) {
                     if(target.deck.play_deck.elementAt(i).getId()==6){
-                        //todo удалить карту мимо у target
+
+                        CardAction tmp = new CardAction(target.deck.play_deck.elementAt(i).getId());
+                        tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
+                        GameScreen.getStage().addActor(tmp);
+                        Game.dis.add_in_discarded(tmp);
+                        target.deck.delete_from_deck(target.deck.play_deck.elementAt(i));
+                        GameScreen.group_actor[0].removeActor(target.deck.play_deck.elementAt(i));
+
                         Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
                         return;
                     }
                 }
-             */   target.currentHealthPoints--;
+                target.currentHealthPoints--;
                 target.bullets[target.currentHealthPoints].visible = false;
-            //    Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
+                Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
                 break;
             }
             case 6: // мимо
@@ -50,14 +57,21 @@ public class CardAction extends Card {
                 boolean flag = false;
                 for (int i = 0; i < Game.currentPlayersNumber; i++) {
                     if (!Game.players.elementAt(i).equals(target)) {
-                      /*  for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
+                        for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
                             if (Game.players.elementAt(i).deck.play_deck.elementAt(j).getId() == 6) {
-                                //todo удалить карту мимо у target
+
+                                CardAction tmp = new CardAction(Game.players.elementAt(i).deck.play_deck.elementAt(j).getId());
+                                tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
+                                GameScreen.getStage().addActor(tmp);
+                                Game.dis.add_in_discarded(tmp);
+                                Game.players.elementAt(i).deck.delete_from_deck(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+                                GameScreen.group_actor[0].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+
                                 flag=true;
                                 break;
                             }
                         }
-                       */ if(!flag) {
+                       if(!flag) {
                             Game.players.elementAt(i).currentHealthPoints--;
                             Game.players.elementAt(i).bullets[Game.players.elementAt(i).
                                     currentHealthPoints].visible = false;
@@ -71,14 +85,21 @@ public class CardAction extends Card {
                 boolean flag = false;
                 for (int i = 0; i < Game.currentPlayersNumber; i++) {
                     if (!Game.players.elementAt(i).equals(target)) {
-                      /*  for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
+                      for (int j = 0; j < Game.players.elementAt(i).deck.play_deck.size(); j++) {
                             if (Game.players.elementAt(i).deck.play_deck.elementAt(j).getId() == 5) {
-                                //todo удалить карту бэнг у target
+
+                                CardAction tmp = new CardAction(Game.players.elementAt(i).deck.play_deck.elementAt(j).getId());
+                                tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
+                                GameScreen.getStage().addActor(tmp);
+                                Game.dis.add_in_discarded(tmp);
+                                Game.players.elementAt(i).deck.delete_from_deck(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+                                GameScreen.group_actor[0].removeActor(Game.players.elementAt(i).deck.play_deck.elementAt(j));
+
                                 flag=true;
                                 break;
                             }
                         }
-                       */ if(!flag) {
+                        if(!flag) {
                             Game.players.elementAt(i).currentHealthPoints--;
                             Game.players.elementAt(i).bullets[Game.players.elementAt(i).
                                     currentHealthPoints].visible = false;
@@ -91,6 +112,5 @@ public class CardAction extends Card {
             case 16: // дуэль
                 break;
         }
-     //   Game.dis.add_in_discarded(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(Game.players.elementAt(Game.currentPlayer).deck.play_deck.indexOf(this)));
-    }//уже скидывает карту в с
+    }
 }

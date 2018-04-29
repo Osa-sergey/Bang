@@ -38,6 +38,8 @@ public class Game {
         }else{
             currentPlayer--;
         }
+        players.elementAt(currentPlayer).currentBangsInStep = players.elementAt(currentPlayer).weapon.bangsInStep;
+        players.elementAt(currentPlayer).distBang = players.elementAt(currentPlayer).weapon.distBang;
     }
     public boolean is_game_over(){
         boolean Serif = false;

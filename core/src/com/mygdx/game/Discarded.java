@@ -30,8 +30,8 @@ public class Discarded {
     } //сменяем колоду
     public void add_in_discarded(Card card){
         dis_arr[counter]=card;
-        card.setPosition(ViewConst.discard_x,ViewConst.discard_y);
         card.setRotation(ViewConst.discard_r);
+        card.open = false;
         counter++;
     }//добавление карты в сброс
 }

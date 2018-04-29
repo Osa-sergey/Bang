@@ -142,10 +142,20 @@ public class Player extends Actor {
               */  ((CardWeapon) play).set_card_weapon(this);
             } else if (play instanceof CardAction) {
                 ((CardAction) play).play_card_action(target);
+/*
+блок отвечающий за добавление карты в сброс и удаления с руки
+ */
+                CardAction tmp = new CardAction(play.getId());
+                tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
+                GameScreen.getStage().addActor(tmp);
+                Game.dis.add_in_discarded(tmp);
+                this.deck.delete_from_deck(play);
+                GameScreen.group_actor[0].removeActor(play);
+
+
             } else if (play instanceof CardEffect) {
                 ((CardEffect) play).set_anset_card_effect(this, true);
             }
-        //    this.deck.delete_from_deck(play);
             return true;
         } else return false;
     }

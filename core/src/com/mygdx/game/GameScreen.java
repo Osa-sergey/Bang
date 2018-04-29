@@ -38,7 +38,7 @@ public class GameScreen implements Screen {
             return input;
         }
     }
-    private Stage stage;
+    static private Stage stage;
     static private MyGdxGame game;
     static boolean isBangActive =false;
     Sprite table;
@@ -56,7 +56,7 @@ public class GameScreen implements Screen {
     Integer roleId[];
     Game game_;
     Discarded discard;
-    Group group_actor[];
+    static Group group_actor[];
     Base[] bases;
     static Card tmpCard = null;
 
@@ -173,7 +173,7 @@ public class GameScreen implements Screen {
             stage.addActor(group_actor[i]);
         }
     }
-    public Stage getStage() {
+    public static Stage getStage() {
         return stage;
     }
     @Override
