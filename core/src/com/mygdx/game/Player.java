@@ -135,11 +135,27 @@ public class Player extends Actor {
     public boolean play_card(Card play,Player target) {
         if (can_play_card(play.getId())) {
             if (play instanceof CardWeapon) {
-            /*    if (!(this.weapon.distBang == 1 && this.weapon.bangsInStep == 1)) {
-                    Game.dis.add_in_discarded(this.weapon);
+                System.out.println(this.bangsInStep);
+                if (!(this.weapon.distBang == 1 && this.weapon.bangsInStep == 1)) {
+                    CardWeapon tmp = new CardWeapon(this.weapon.getId());
+                    tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
+                    GameScreen.getStage().addActor(tmp);
+                    tmp.anset_weapon(this);
+                    System.out.println(bangsInStep);
+                    Game.dis.add_in_discarded(tmp);
+                    GameScreen.group_actor[0].removeActor(this.weapon);
+                }else {
+                    this.weapon.anset_weapon(this);
+                    System.out.println(this.bangsInStep);
                 }
-                this.weapon.anset_weapon(this);
-              */  ((CardWeapon) play).set_card_weapon(this);
+                CardWeapon tmp = new CardWeapon(play.getId());
+                tmp.setPosition(ViewConst.player_line_left_margin+(ViewConst.card_width+ViewConst.player_line_hor_margin)*2,ViewConst.player_line_y);
+                GameScreen.group_actor[0].addActor(tmp);
+                tmp.set_card_weapon(this);
+                this.deck.delete_from_deck(play);
+                GameScreen.group_actor[0].removeActor(play);
+                System.out.println(this.bangsInStep);
+
             } else if (play instanceof CardAction) {
                 ((CardAction) play).play_card_action(target);
             /*

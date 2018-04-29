@@ -14,12 +14,12 @@ public class Deck {
         input.setRotation(0);
         play_deck.add(input);
     }//добавление карты без проверки
-    public void add_in_deck(Game game,Integer quantity){
+    public void add_in_deck(Integer quantity){
         for (int i = 0; i <quantity; i++) {
-            if(game.pack.pack_arr.empty()){
-                game.dis.reset_pack(game.pack);
+            if(Game.pack.pack_arr.empty()){
+                Game.dis.reset_pack(Game.pack);
             }
-            add_in_deck(game.pack.pack_arr.pop());
+            add_in_deck(Game.pack.pack_arr.pop());
         }
     }
     public void delete_from_deck(Card card){

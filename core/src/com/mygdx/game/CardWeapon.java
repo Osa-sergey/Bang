@@ -39,7 +39,7 @@ public class CardWeapon extends Card {
         player.weapon=this;
     }
     //убрать карту оружия
-    public void anset_weapon(Player player, Game game){
+    public void anset_weapon(Player player){
         player.distBang -=this.distBang;
         player.bangsInStep -=this.bangsInStep;
     }
