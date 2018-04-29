@@ -50,8 +50,8 @@ public class GameScreen implements Screen {
     Sprite table;
     Button next;
     Button submit;
-    Button next_card;
-    Button prev_card;
+    static Button next_card;
+    static Button prev_card;
     Discarded discarded;
     Pack pack;
     Integer [] cards;
