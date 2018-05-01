@@ -64,8 +64,6 @@ public class ViewConst {
     final static int btnSubmit_x = 1436;
     final static int btnSubmit_y = 344;
 
-    final static int playingCard_x = 890;
-    final static int playingCard_y = 480;
 
     final static int btnScrollNext_width = 64;
     final static int btnScrollNext_height = 334;
@@ -77,7 +75,7 @@ public class ViewConst {
     final static int btnScrollPrev_x = 1186;
     final static int btnScrollPrev_y = 0;
 
-    final static int deck_cardsVisible_number = 2;
+    final static int deck_cardsVisible_number = 4;
 
     final static int screen_width = 1920;
 

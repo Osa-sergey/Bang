@@ -107,7 +107,7 @@ public class CardPerson extends Card{
                    if(!getId().equals(Game.players.elementAt(Game.currentPlayer).person.getId())){
                        for (int i = 0; i <Game.currentPlayersNumber ; i++) {
                            //установка цели
-                           if(getId().equals(Game.players.elementAt(i).person.getId())){
+                           if(getId().equals(Game.players.elementAt(i).person.getId())&&Game.players.elementAt(i).currentHealthPoints!=0){
                                Game.target = Game.players.elementAt(i);
                                //если мы играем карту бэнг, то вызываем фун-ию сыгрывания
                                if(GameScreen.isBangActive){

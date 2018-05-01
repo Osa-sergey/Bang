@@ -194,6 +194,12 @@ public class GameScreen implements Screen {
             }
             stage.addActor(group_actor[i]);
         }
+        Game.players.elementAt(Game.currentPlayer).deck.add_in_deck(2);
+        for (int i =Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()-2 ; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size() ; i++) {
+            Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).open = true;
+            Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(-500,-500);
+            GameScreen.group_actor[0].addActor(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i));
+        }
     }
     public static Stage getStage() {
         return stage;

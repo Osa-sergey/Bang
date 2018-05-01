@@ -205,6 +205,12 @@ public class Player extends Actor {
                 GameScreen.next_card.visible = false;
                 GameScreen.prev_card.visible = false;
             }
+            for (int i = 0; i <Game.currentPlayersNumber ; i++) {
+                if(Game.players.elementAt(i).currentHealthPoints==0){
+                    Game.players.elementAt(i).person.setId(99);
+                    Game.players.elementAt(i).role.open = true;
+                }
+            }
             return true;
         } else return false;
     }

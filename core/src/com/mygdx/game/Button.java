@@ -69,14 +69,15 @@ public class Button extends Actor {
                             /*
                             скрывание карт, эффектов и роли
                              */
-                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
+                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.size(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).
                                         visible = false;
                             }
-                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.capacity(); i++) {
+                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.size(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).
                                         visible = false;
                             }
+                            if(gameScreen.players.elementAt(gameScreen.game_.currentPlayer).currentHealthPoints!=0)
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = false;
                             /*
                             передача хода
@@ -85,11 +86,105 @@ public class Button extends Actor {
                             /*
                             скрытие кнопок
                              */
-                            visible = false;
-                            gameScreen.next_card.visible = false;
-                            gameScreen.prev_card.visible = false;
-                            gameScreen.submit.visible = true;
-                            break;
+                            if(Game.players.elementAt(Game.currentPlayer).currentHealthPoints==0){
+                                visible = false;
+                                gameScreen.next_card.visible = false;
+                                gameScreen.prev_card.visible = false;
+                                gameScreen.submit.visible = true;
+                                        gameScreen.group_actor[0].setPosition(ViewConst.pr1_x, ViewConst.pr1_y);
+                                        gameScreen.group_actor[0].setRotation(ViewConst.pr1_r);
+                                        gameScreen.group_actor[1].setPosition(ViewConst.pr2_x, ViewConst.pr2_y);
+                                        gameScreen.group_actor[1].setRotation(ViewConst.pr2_r);
+                                        gameScreen.group_actor[2].setPosition(ViewConst.pr3_x, ViewConst.pr3_y);
+                                        gameScreen.group_actor[2].setRotation(ViewConst.pr3_r);
+                                        gameScreen.group_actor[3].setPosition(ViewConst.pr0_x, ViewConst.pr0_y);
+                                        gameScreen.group_actor[3].setRotation(ViewConst.pr0_r);
+                            /*
+                            синхронизация графики и логики
+                             */
+                                Group tmp_group = gameScreen.group_actor[gameScreen.game_.currentPlayersNumber - 1];
+                                for (int i = gameScreen.game_.currentPlayersNumber - 1; i > 0; i--) {
+                                    gameScreen.group_actor[i] = gameScreen.group_actor[i - 1];
+                                }
+                                gameScreen.group_actor[0] = tmp_group;
+                            /*
+                            отображение карт, эффектов и роли
+                             */
+                                for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.size(); i++) {
+                                    if(i>ViewConst.deck_cardsVisible_number){
+                                        gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.screen_width+(i-1-ViewConst.
+                                                deck_cardsVisible_number)*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                                    }else{
+                                        gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = true;
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_start+i*ViewConst.deck_card_hor,ViewConst.deck_card_y);
+                                    }
+                                }
+                                for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.size(); i++) {
+                                    gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).visible = true;
+                                }
+                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = true;
+                            /*
+                            скрытие кнопок
+                             */
+                                gameScreen.submit.visible = false;
+                                visible = true;
+                                gameScreen.next_card.inProcess = false;
+                                gameScreen.prev_card.inProcess = false;
+
+                                gameScreen.prev_card.inProcess = true;
+                                gameScreen.next_card.inProcess = true;
+                            /*
+                            расставление карт и деланье их видимыми
+                             */
+                                if(!gameScreen.next_card.visible) {
+                                    for (int i = 0; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                                        if (i <= ViewConst.deck_cardsVisible_number) {
+                                            Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                    visible = true;
+                                            Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                    setPosition(ViewConst.deck_card_x_start + i * ViewConst.deck_card_hor, ViewConst.deck_card_y);
+                                        } else break;
+                                    }
+                                    for (int i = ViewConst.deck_cardsVisible_number+1; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                visible = false;
+                                        Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).
+                                                setPosition(ViewConst.screen_width + (i - 2 - ViewConst.deck_cardsVisible_number) * ViewConst.deck_card_hor, ViewConst.deck_card_y);
+                                    }
+                                }
+                            /*
+                            скрывание карт, эффектов и роли
+                             */
+                                for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.size(); i++) {
+                                    gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).
+                                            visible = false;
+                                }
+                                for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.size(); i++) {
+                                    gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).
+                                            visible = false;
+                                }
+                                if(gameScreen.players.elementAt(gameScreen.game_.currentPlayer).currentHealthPoints!=0)
+                                gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = false;
+                            /*
+                            передача хода
+                             */
+                                gameScreen.game_.next_turn();
+                            /*
+                            скрытие кнопок
+                             */
+                                visible = false;
+                                gameScreen.next_card.visible = false;
+                                gameScreen.prev_card.visible = false;
+                                gameScreen.submit.visible = true;
+                                break;
+                            }else{
+                                visible = false;
+                                gameScreen.next_card.visible = false;
+                                gameScreen.prev_card.visible = false;
+                                gameScreen.submit.visible = true;
+                                break;
+                            }
                         }
                         /*
                         принятие хода
@@ -98,8 +193,6 @@ public class Button extends Actor {
                             /*
                             поварачивание игроков на поле
                              */
-                            switch (gameScreen.game_.currentPlayersNumber) {
-                                case 4:
                                     gameScreen.group_actor[0].setPosition(ViewConst.pr1_x, ViewConst.pr1_y);
                                     gameScreen.group_actor[0].setRotation(ViewConst.pr1_r);
                                     gameScreen.group_actor[1].setPosition(ViewConst.pr2_x, ViewConst.pr2_y);
@@ -108,22 +201,6 @@ public class Button extends Actor {
                                     gameScreen.group_actor[2].setRotation(ViewConst.pr3_r);
                                     gameScreen.group_actor[3].setPosition(ViewConst.pr0_x, ViewConst.pr0_y);
                                     gameScreen.group_actor[3].setRotation(ViewConst.pr0_r);
-                                    break;
-                                case 3:
-                                    gameScreen.group_actor[0].setPosition(ViewConst.pr1_x, ViewConst.pr1_y);
-                                    gameScreen.group_actor[0].setRotation(ViewConst.pr1_r);
-                                    gameScreen.group_actor[1].setPosition(ViewConst.pr3_x, ViewConst.pr3_y);
-                                    gameScreen.group_actor[1].setRotation(ViewConst.pr3_r);
-                                    gameScreen.group_actor[2].setPosition(ViewConst.pr0_x, ViewConst.pr0_y);
-                                    gameScreen.group_actor[2].setRotation(ViewConst.pr0_r);
-                                    break;
-                                case 2:
-                                    gameScreen.group_actor[0].setPosition(ViewConst.pr2_x, ViewConst.pr2_y);
-                                    gameScreen.group_actor[0].setRotation(ViewConst.pr2_r);
-                                    gameScreen.group_actor[1].setPosition(ViewConst.pr0_x, ViewConst.pr0_y);
-                                    gameScreen.group_actor[1].setRotation(ViewConst.pr0_r);
-
-                            }
                             /*
                             синхронизация графики и логики
                              */
@@ -135,7 +212,7 @@ public class Button extends Actor {
                             /*
                             отображение карт, эффектов и роли
                              */
-                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.capacity(); i++) {
+                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.size(); i++) {
                                 if(i>ViewConst.deck_cardsVisible_number){
                                     gameScreen.players.elementAt(gameScreen.game_.currentPlayer).deck.play_deck.elementAt(i).visible = false;
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.screen_width+(i-1-ViewConst.
@@ -145,13 +222,19 @@ public class Button extends Actor {
                                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(ViewConst.deck_card_x_start+i*ViewConst.deck_card_hor,ViewConst.deck_card_y);
                                 }
                             }
-                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.capacity(); i++) {
+                            for (int i = 0; i < gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.size(); i++) {
                                 gameScreen.players.elementAt(gameScreen.game_.currentPlayer).effects.elementAt(i).visible = true;
                             }
                             gameScreen.players.elementAt(gameScreen.game_.currentPlayer).role.open = true;
                             /*
                             скрытие кнопок
                              */
+                            Game.players.elementAt(Game.currentPlayer).deck.add_in_deck(2);
+                            for (int i =Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()-2 ; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size() ; i++) {
+                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).open = true;
+                                Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(-500,-500);
+                                GameScreen.group_actor[0].addActor(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i));
+                            }
                             visible = false;
                             gameScreen.next.visible = true;
                             gameScreen.next_card.inProcess = false;
