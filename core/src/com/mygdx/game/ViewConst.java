@@ -85,4 +85,7 @@ public class ViewConst {
     final static int effects_start_x = -405;
     final static int effects_start_y = 70;
     final static int effects_hor = 80;
+    final static int playingCard_x = 1370;
+    final static int playingCard_y = 437;
+    final static int sleep = 2000;
 }

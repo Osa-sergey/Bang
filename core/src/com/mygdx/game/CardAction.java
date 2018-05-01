@@ -24,6 +24,20 @@ public class CardAction extends Card {
                         target.deck.delete_from_deck(target.deck.play_deck.elementAt(i));
                         //уменьшение кол-ва оставшихся выстрелов в этот ход
                         Game.players.elementAt(Game.currentPlayer).currentBangsInStep--;
+                        Thread thread = new Thread(){
+                            @Override
+                            public void run() {
+                                CardAction miss = new CardAction(6);
+                                miss.open = true;
+                                miss.setPosition(ViewConst.playingCard_x,ViewConst.playingCard_y);
+                                GameScreen.getStage().addActor(miss);
+                                try{
+                                    Thread.sleep(ViewConst.sleep);
+                                }catch (Exception e){}
+                                miss.setPosition(2000,0);
+                            }
+                        };
+                        thread.start();
                         return;
                     }
                 }

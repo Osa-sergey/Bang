@@ -207,6 +207,23 @@ public class Player extends Actor {
                 }
             }
             return true;
-        } else return false;
+        } else
+        {
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    Card miss = new Card(30);
+                    miss.open = true;
+                    miss.setPosition(ViewConst.playingCard_x,ViewConst.playingCard_y);
+                    GameScreen.getStage().addActor(miss);
+                    try{
+                        Thread.sleep(ViewConst.sleep);
+                    }catch (Exception e){}
+                    miss.setPosition(2000,0);
+                }
+            };
+            thread.start();
+            return false;
+        }
     }
 }
