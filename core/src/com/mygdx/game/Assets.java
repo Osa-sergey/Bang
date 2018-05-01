@@ -22,5 +22,4 @@ public class Assets {
         return atlas.findRegion(name);
     }
 
-
 }

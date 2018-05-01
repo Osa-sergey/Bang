@@ -141,21 +141,15 @@ public class Player extends Actor {
                     tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
                     GameScreen.getStage().addActor(tmp);
                     tmp.anset_weapon(this);
-                    System.out.println(bangsInStep);
                     Game.dis.add_in_discarded(tmp);
                     GameScreen.group_actor[0].removeActor(this.weapon);
                 }else {
                     this.weapon.anset_weapon(this);
-                    System.out.println(this.bangsInStep);
                 }
                 CardWeapon tmp = new CardWeapon(play.getId());
                 tmp.setPosition(ViewConst.player_line_left_margin+(ViewConst.card_width+ViewConst.player_line_hor_margin)*2,ViewConst.player_line_y);
                 GameScreen.group_actor[0].addActor(tmp);
                 tmp.set_card_weapon(this);
-                this.deck.delete_from_deck(play);
-                GameScreen.group_actor[0].removeActor(play);
-                System.out.println(this.bangsInStep);
-
             } else if (play instanceof CardAction) {
                 ((CardAction) play).play_card_action(target);
             /*
@@ -165,13 +159,14 @@ public class Player extends Actor {
                 tmp.setPosition(ViewConst.discard_x,ViewConst.discard_y);
                 GameScreen.getStage().addActor(tmp);
                 Game.dis.add_in_discarded(tmp);
-                this.deck.delete_from_deck(play);
-                GameScreen.group_actor[0].removeActor(play);
-
-
             } else if (play instanceof CardEffect) {
-                ((CardEffect) play).set_anset_card_effect(this, true);
+                CardEffect tmp = new CardEffect(play.getId());
+                tmp.setPosition(ViewConst.effects_start_x + ViewConst.effects_hor*effects.size(),ViewConst.effects_start_y);
+                GameScreen.group_actor[0].addActor(tmp);
+                tmp.set_anset_card_effect(this,true);
             }
+            this.deck.delete_from_deck(play);
+            GameScreen.group_actor[0].removeActor(play);
             if(GameScreen.prev_card.visible){
                 for (int i = ViewConst.deck_cardsVisible_number+1; i <Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                     Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).visible = true;

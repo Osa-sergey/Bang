@@ -75,10 +75,14 @@ public class ViewConst {
     final static int btnScrollPrev_x = 1186;
     final static int btnScrollPrev_y = 0;
 
-    final static int deck_cardsVisible_number = 4;
+    final static int deck_cardsVisible_number = 3;
 
     final static int screen_width = 1920;
 
     final static int player_person_x = 241;
     final static int player_person_y = 19;
+
+    final static int effects_start_x = -405;
+    final static int effects_start_y = 70;
+    final static int effects_hor = 80;
 }

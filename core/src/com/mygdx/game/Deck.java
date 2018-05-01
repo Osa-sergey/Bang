@@ -23,7 +23,9 @@ public class Deck {
         }
     }
     public void delete_from_deck(Card card){
-        play_deck.removeElementAt(play_deck.indexOf(card));
-        play_deck.trimToSize();
+        if(play_deck.indexOf(card)!=-1) {
+            play_deck.removeElementAt(play_deck.indexOf(card));
+            play_deck.trimToSize();
+        }
     }
 }

@@ -50,6 +50,9 @@ public class Button extends Actor {
                             /*
                             расставление карт и деланье их видимыми
                              */
+                            if(Game.players.elementAt(Game.currentPlayer).deck.play_deck.size()>Game.players.elementAt(Game.currentPlayer).currentHealthPoints){
+                                return;
+                            }
                             if(!gameScreen.next_card.visible) {
                                 for (int i = 0; i < Game.players.elementAt(Game.currentPlayer).deck.play_deck.size(); i++) {
                                     if (i <= ViewConst.deck_cardsVisible_number) {
