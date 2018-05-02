@@ -30,7 +30,7 @@ public class Player extends Actor {
         currentHealthPoints = maxHealthPoints;
         if(person.getPerson() == CardPerson.Persons.ElusiveJoe) dist=2;
         if(person.getPerson() == CardPerson.Persons.ColdBloodedRosie) distBang=2;
-        if(person.getPerson() == CardPerson.Persons.BabyBilly) bangsInStep=1000;// будем считать, что любое количество карт Bang
+       // if(person.getPerson() == CardPerson.Persons.BabyBilly) bangsInStep=1000;// будем считать, что любое количество карт Bang
         currentBangsInStep=bangsInStep;
         deck = new Deck(maxHealthPoints);
         for (int i = 0; i <maxHealthPoints; i++) {

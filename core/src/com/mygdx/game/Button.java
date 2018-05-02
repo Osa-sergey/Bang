@@ -238,10 +238,11 @@ public class Button extends Actor {
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(-500,-500);
                                 GameScreen.group_actor[0].addActor(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i));
                             }
+
                             /*
                             присваиваем характеристики игроку
                              */
-                            Game.players.elementAt(Game.currentPlayer).dist = 1;
+                          /*  Game.players.elementAt(Game.currentPlayer).dist = 1;
                             Game.players.elementAt(Game.currentPlayer).distBang = Game.players.elementAt(Game.currentPlayer).weapon.distBang;
                             Game.players.elementAt(Game.currentPlayer).bangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
                             Game.players.elementAt(Game.currentPlayer).currentBangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
@@ -268,7 +269,7 @@ public class Button extends Actor {
                                     Game.players.elementAt(Game.currentPlayer).distBang++;
                                 }
                             }
-
+                            */
                             visible = false;
                             gameScreen.next.visible = true;
                             gameScreen.next_card.inProcess = false;
