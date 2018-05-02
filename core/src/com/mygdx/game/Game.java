@@ -53,13 +53,55 @@ public class Game {
             if(players.elementAt(i).role.getRole()==CardRole.Roles.Fuorilegge) Fuoril=true;
         }
         if(Serif==true && Rinigat==false && Fuoril==false){
-            //todo выиграл шриф показать его выигрыш
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    CardPerson miss = new CardPerson(22);
+                    miss.open = true;
+                    miss.setPosition(ViewConst.playingCard_x,ViewConst.playingCard_y);
+                    GameScreen.getStage().addActor(miss);
+                    try{
+                        Thread.sleep(ViewConst.sleepLong);
+                    }catch (Exception e){}
+                    miss.setPosition(2000,0);
+                    GameScreen.getGame().setScreen(new Menu(GameScreen.getGame()));
+                }
+            };
+            thread.start();
             return true;
         }else if(Serif==false && Fuoril==true){
-            //todo выиграли бандиты показать выигрыш
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    CardPerson miss = new CardPerson(24);
+                    miss.open = true;
+                    miss.setPosition(ViewConst.playingCard_x,ViewConst.playingCard_y);
+                    GameScreen.getStage().addActor(miss);
+                    try{
+                        Thread.sleep(ViewConst.sleepLong);
+                    }catch (Exception e){}
+                    miss.setPosition(2000,0);
+                    GameScreen.getGame().setScreen(new Menu(GameScreen.getGame()));
+                }
+            };
+            thread.start();
             return true;
         }else if(Serif==false && Fuoril==false && Rinigat==true){
-            //todo выиграл ренигат показать выигрыш
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    CardPerson miss = new CardPerson(23);
+                    miss.open = true;
+                    miss.setPosition(ViewConst.playingCard_x,ViewConst.playingCard_y);
+                    GameScreen.getStage().addActor(miss);
+                    try{
+                        Thread.sleep(ViewConst.sleepLong);
+                    }catch (Exception e){}
+                    miss.setPosition(2000,0);
+                    GameScreen.getGame().setScreen(new Menu(GameScreen.getGame()));
+                }
+            };
+            thread.start();
             return true;
         }else return false;
 

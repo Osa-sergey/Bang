@@ -88,4 +88,5 @@ public class ViewConst {
     final static int playingCard_x = 1370;
     final static int playingCard_y = 437;
     final static int sleep = 2000;
+    final static int sleepLong = 5000;
 }

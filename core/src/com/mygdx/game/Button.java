@@ -242,11 +242,11 @@ public class Button extends Actor {
                             /*
                             присваиваем характеристики игроку
                              */
-                          /*  Game.players.elementAt(Game.currentPlayer).dist = 1;
+                            Game.players.elementAt(Game.currentPlayer).dist = 1;
                             Game.players.elementAt(Game.currentPlayer).distBang = Game.players.elementAt(Game.currentPlayer).weapon.distBang;
                             Game.players.elementAt(Game.currentPlayer).bangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
                             Game.players.elementAt(Game.currentPlayer).currentBangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
-                            switch (Game.players.elementAt(Game.currentPlayer).person.getId()){
+                          /*  switch (Game.players.elementAt(Game.currentPlayer).person.getId()){
                                 case 114:{
                                     Game.players.elementAt(Game.currentPlayer).distBang += 1;
                                     break;
@@ -274,7 +274,7 @@ public class Button extends Actor {
                             gameScreen.next.visible = true;
                             gameScreen.next_card.inProcess = false;
                             gameScreen.prev_card.inProcess = false;
-                            System.out.println(Game.players.elementAt(Game.
+                          /*  System.out.println(Game.players.elementAt(Game.
                                     currentPlayer).currentBangsInStep+"curBangInStep");
                             System.out.println(Game.players.elementAt(Game.
                                     currentPlayer).bangsInStep+"bangInStep");
@@ -282,7 +282,7 @@ public class Button extends Actor {
                                     currentPlayer).distBang+"distBang");
                             System.out.println(Game.players.elementAt(Game.
                                     currentPlayer).dist+"dist");
-                            System.out.println("//////////////////////");
+                            System.out.println("//////////////////////");*/
                             break;
                         }
                         /*

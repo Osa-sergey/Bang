@@ -45,6 +45,11 @@ public class GameScreen implements Screen {
     поля класса
 */
     static private Stage stage;
+
+    public static MyGdxGame getGame() {
+        return game;
+    }
+
     static private MyGdxGame game;
     static boolean isBangActive =false;
     Sprite table;
