@@ -238,10 +238,50 @@ public class Button extends Actor {
                                 Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i).setPosition(-500,-500);
                                 GameScreen.group_actor[0].addActor(Game.players.elementAt(Game.currentPlayer).deck.play_deck.elementAt(i));
                             }
+                            /*
+                            присваиваем характеристики игроку
+                             */
+                            Game.players.elementAt(Game.currentPlayer).dist = 1;
+                            Game.players.elementAt(Game.currentPlayer).distBang = Game.players.elementAt(Game.currentPlayer).weapon.distBang;
+                            Game.players.elementAt(Game.currentPlayer).bangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
+                            Game.players.elementAt(Game.currentPlayer).currentBangsInStep = Game.players.elementAt(Game.currentPlayer).weapon.bangsInStep;
+                            switch (Game.players.elementAt(Game.currentPlayer).person.getId()){
+                                case 114:{
+                                    Game.players.elementAt(Game.currentPlayer).distBang += 1;
+                                    break;
+                                }
+                                case 110:{
+                                    Game.players.elementAt(Game.currentPlayer).dist += 1;
+                                    break;
+                                }
+                                case 109:{
+                                    Game.players.elementAt(Game.currentPlayer).bangsInStep += 1000;
+                                    Game.players.elementAt(Game.currentPlayer).currentBangsInStep += 1000;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i <Game.players.elementAt(Game.currentPlayer).effects.size() ; i++) {
+                                if(Game.players.elementAt(Game.currentPlayer).effects.elementAt(i).getId()== 0){
+                                    Game.players.elementAt(Game.currentPlayer).dist++;
+                                    continue;
+                                }if(Game.players.elementAt(Game.currentPlayer).effects.elementAt(i).getId()== 1){
+                                    Game.players.elementAt(Game.currentPlayer).distBang++;
+                                }
+                            }
+
                             visible = false;
                             gameScreen.next.visible = true;
                             gameScreen.next_card.inProcess = false;
                             gameScreen.prev_card.inProcess = false;
+                            System.out.println(Game.players.elementAt(Game.
+                                    currentPlayer).currentBangsInStep+"curBangInStep");
+                            System.out.println(Game.players.elementAt(Game.
+                                    currentPlayer).bangsInStep+"bangInStep");
+                            System.out.println(Game.players.elementAt(Game.
+                                    currentPlayer).distBang+"distBang");
+                            System.out.println(Game.players.elementAt(Game.
+                                    currentPlayer).dist+"dist");
+                            System.out.println("//////////////////////");
                             break;
                         }
                         /*

@@ -112,42 +112,35 @@ public class Card extends Actor {
                     }
                     GameScreen.group_actor[0].removeActor(Card.this);
                     dragged = false;
-                }
-            }
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                /*
-                выделение зоны прослушивания на экране
-                 */
-                if (visible && getX()>=ViewConst.deck_card_x_start
-                        && getX()<=ViewConst.screen_width
-                        && getY()>=0
-                        && getY()<=ViewConst.btnNext_y)
-                {
+                }else{
+                    if (visible && getX()>=ViewConst.deck_card_x_start
+                            && getX()<=ViewConst.screen_width
+                            && getY()>=0
+                            && getY()<=ViewConst.btnNext_y)
+                    {
                     /*
                     выбор цели карты
                      */
-                    Game.target = null;
-                    if(getId()!=5)
-                        Game.target = Game.players.elementAt(Game.currentPlayer);
-                    else
-                    {
+                        Game.target = null;
+                        if(getId()!=5)
+                            Game.target = Game.players.elementAt(Game.currentPlayer);
+                        else
+                        {
                         /*
                         в случае когда эффект карты действует только на одного конкретного другого игрока
                          */
-                        GameScreen.isBangActive = true;
-                        GameScreen.tmpCard=Card.this;
-                        // ожидание выбора цели действия карты
-                        // в обработчике карт персон
-                        return true;
-                    }
+                            GameScreen.isBangActive = true;
+                            GameScreen.tmpCard=Card.this;
+                            // ожидание выбора цели действия карты
+                            // в обработчике карт персон
+                            return;
+                        }
                     /*
                     выполнение действия карты
                      */
-                    Game.players.elementAt(Game.currentPlayer).play_card(Card.this,Game.target);
+                        Game.players.elementAt(Game.currentPlayer).play_card(Card.this,Game.target);
+                    }
                 }
-                return true;
             }
         });
     }
