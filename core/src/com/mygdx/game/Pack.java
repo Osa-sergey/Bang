@@ -54,7 +54,7 @@ public class Pack {
         if(pack_arr.empty()){
             game.dis.reset_pack(this);
         }
-        pack_arr.peek();//todo показать карту view
+        pack_arr.peek();
         return pack_arr.pop();
     }//удаляет карту из колоды просматривая её
 */}

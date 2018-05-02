@@ -32,7 +32,6 @@ public class CardEffect extends Card {
     }
     public Card discard_card_effect(Player player){
         set_anset_card_effect(player,false);
-        //todo перерисовывать список эффектов
         return this;
     }
 }
