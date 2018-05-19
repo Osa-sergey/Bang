@@ -78,6 +78,7 @@ public class GameScreen implements Screen {
         stage = new Stage(MyGdxGame.getViewport());
         table = new Sprite(Assets.get_texture_region("table"));
         table.setSize(stage.getWidth(),stage.getHeight());
+        GameBuilder gameBuilder = new GameBuilder();
         /*
         создание кнопок
          */
@@ -104,6 +105,7 @@ public class GameScreen implements Screen {
         создание сброса и колоды
          */
         discarded = new Discarded();
+        gameBuilder.buildDiscard(discarded);
         cards = new Integer[61];
         cards = assistant.scan(in,cards,"id.txt");
 
@@ -112,6 +114,7 @@ public class GameScreen implements Screen {
             stage.addActor(pack.pack_arr.elementAt(i));
             pack.pack_arr.elementAt(i).open=false;
         }
+        gameBuilder.buildPack(pack);
         /*
         создание игроков
          */
@@ -135,11 +138,11 @@ public class GameScreen implements Screen {
             Player player = new Player(role,person,pack,bullets1);
             players.add(player);
         }
+        gameBuilder.buildPlayers(players);
         /*
         создание класса игры
          */
-        discard = new Discarded();
-        game_= new Game(players,pack,discard);
+        game_ = gameBuilder.build();
 
         /*
         создание графического отображения игроков

@@ -14,23 +14,18 @@ public class Game {
    static ClickListener play_card = null;
    static Player target = null;
 
-    //конструктор
-    public Game(Vector<Player> play,Pack pack,Discarded discard){
-        players=play;
-        this.pack=pack;
-        dis=discard;
-        for (int i = 0; i <playersNumber; i++) {
-            if(players.get(i).role.getRole() == CardRole.Roles.Sceriffo)
-                currentPlayer=i;
-        }
-        Player tmp;
-        for (int i = 0; i <playersNumber ; i++) {
-            tmp = players.get(i);
-            if(currentPlayer+i>=playersNumber) currentPlayer = 0;
-            players.set(i,players.get(currentPlayer+i));
-            players.set(currentPlayer+i,tmp);
-        }
-        currentPlayer = 0;
+//    сетторы
+
+    public static void setPlayers(Vector<Player> players) {
+        Game.players = players;
+    }
+
+    public static void setPack(Pack pack) {
+        Game.pack = pack;
+    }
+
+    public static void setDis(Discarded dis) {
+        Game.dis = dis;
     }
     //переход хода
     public void next_turn(){
